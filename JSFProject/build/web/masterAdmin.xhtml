@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>master Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <div align="center">
+                <h:outputText value="#{controller.notfication}" />
+
+
+                <h:dataTable value="#{controller.users}" var="user" border="1" cellpadding="5">
+                    <f:facet name="caption"> <h2>List of users</h2>
+                        
+                        
+                        <h:outputText value="Name: " />
+                        <h:inputText value="#{controller.search.name}"/> <br/> 
+                        
+                        <div style="margin-top: 10px;">
+                        <h:outputText value="Age: " />
+                        <h:inputText value="#{controller.search.age}" /> <br/> 
+                        </div>
+                        
+                        <h:commandButton value="Search" action="#{controller.searchInEmp}" />
+                        <h:commandButton value="Reset" action="#{controller.reset}" /> <br />   
+                        <br /> 
+                        <h:commandButton value="Add new user" action="#{controller.operation}" >
+                            <f:setPropertyActionListener target="#{controller.action}" value="add" />
+                        </h:commandButton> 
+                    </f:facet>
+
+                    <h:column>
+                        <f:facet name="header"> <h:outputText value="Name"/> </f:facet>
+                        <h:outputText value="#{user.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"> <h:outputText value="Age"/> </f:facet>
+                        <h:outputText value="#{user.age}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"> <h:outputText value="Skill"/> </f:facet>
+                        <h:outputText value="#{user.skill}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"> <h:outputText value="Address"/> </f:facet>
+                        <h:outputText value="#{user.adress}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"> <h:outputText value="Action"/> </f:facet>
+                        <h:commandButton value="Update" action="#{controller.operation}" >
+                            <f:setPropertyActionListener target="#{controller.action}" value="update" />
+                            <f:setPropertyActionListener target="#{controller.userOperation}" value="#{user}" />   
+                        </h:commandButton>
+
+                        <h:commandButton value="Delete" action="#{controller.operation}" >
+                            <f:setPropertyActionListener target="#{controller.action}" value="delete" />
+                            <f:setPropertyActionListener target="#{controller.userOperation}" value="#{user}" />    
+                        </h:commandButton>
+
+                        <h:commandButton value="View" action="#{controller.operation}" >
+                            <f:setPropertyActionListener target="#{controller.action}" value="view" />
+                            <f:setPropertyActionListener target="#{controller.userOperation}" value="#{user}"/>
+                        </h:commandButton>
+
+                    </h:column>
+
+                </h:dataTable>
+
+            </div>
+
+        </h:form> 
+    </h:body>
+</html>
+
